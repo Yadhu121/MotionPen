@@ -7,5 +7,6 @@ Motionpen is a computer vision project that lets you **draw in the air using you
 - **Thumb + Pinky** → Clear screen
 
 ### Demo
-https://github.com/user-attachments/assets/c2e15647-fc2b-431f-8f12-fb242b235e70
+
+https://github.com/user-attachments/assets/ef840cd8-3d1c-4307-876f-47e430ab583a
 
