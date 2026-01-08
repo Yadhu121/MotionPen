@@ -29,6 +29,15 @@ while True:
         for hand_landmarks in result.multi_hand_landmarks:
             mp_draw.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
 
+            h, w, _ = frame.shape
+
+            lm = hand_landmarks.landmark[8]
+
+            x = int(lm.x * w)
+            y = int(lm.y * h)
+
+            cv2.circle(frame, (x,y), 10, (0, 0, 255), -1)
+
     cv2.imshow("Camera", frame)
 
     if cv2.waitKey(1) & 0xFF == 27:
