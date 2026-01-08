@@ -4,6 +4,9 @@ import mediapipe as mp
 mp_hands = mp.solutions.hands
 mp_draw = mp.solutions.drawing_utils
 
+prev_x, prev_y = None, None
+canvas = None
+
 hands = mp_hands.Hands (
     static_image_mode = False,
     max_num_hands = 1,
@@ -36,7 +39,21 @@ while True:
             x = int(lm.x * w)
             y = int(lm.y * h)
 
+            if canvas is None:
+                canvas = frame.copy()
+                canvas[:] = 0
+
+            if prev_x is not None and prev_y is not None:
+                cv2.line(canvas, (prev_x, prev_y), (x, y), (255, 0, 0), 5)
+
+            frame = cv2.add(canvas, frame)
+            prev_x, prev_y = x, y
+
             cv2.circle(frame, (x,y), 10, (0, 0, 255), -1)
+
+    else:
+        prev_x, prev_y = None, None
+        canvas = None
 
     cv2.imshow("Camera", frame)
 
